@@ -1,16 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', 'PasteController@create')->name('index');
+Route::post('/', 'PasteController@store');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('{paste}/download', 'PasteController@download')->name('download');
+
+Route::get('{paste}/edit', 'PasteController@edit')->name('edit');
+Route::post('{paste}/edit', 'PasteController@update');
+
+Route::get('{paste}/raw', 'PasteController@showRaw')->name('raw');
+
+Route::get('{paste}', 'PasteController@show')->name('show');

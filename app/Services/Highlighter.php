@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Services;
+
+use Kadet\Highlighter\Formatter\HtmlFormatter;
+use Kadet\Highlighter\KeyLighter;
+
+class Highlighter
+{
+    /** @var KeyLighter */
+    protected $keylighter;
+
+    public function __construct()
+    {
+        $this->keylighter = new KeyLighter();
+        $this->keylighter->init();
+    }
+
+    public function highlight($string, $language = null)
+    {
+        $formatter = new HtmlFormatter();
+        $language = $this->keylighter->getLanguage($language ?? 'text');
+
+        $source = $this->keylighter->highlight($string, $language, $formatter);
+
+        return $this->lineify($source);
+    }
+
+    public function normalizeLanguageName($name)
+    {
+        return $this->keylighter->getLanguage($name)->getIdentifier();
+    }
+
+    public function getLanguageNameByMime($mime)
+    {
+        return $this->keylighter->languageByMime($mime)->getIdentifier();
+    }
+
+    protected function lineify($source)
+    {
+        $no = 1;
+        $result = '';
+
+        foreach (preg_split('/\R/u', $source) as $i => $line) {
+            $result .= sprintf(
+                '<div class="line"><code><span class="counter" data-ln="%d"></span>%s' . "\n" . '</code></div>',
+                $no, $line
+            );
+
+            $no++;
+        }
+
+        return $result;
+    }
+}

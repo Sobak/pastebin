@@ -1,22 +1,34 @@
+function createAlert(content, type = 'success') {
+    let html = '<div class="alert-box alert-' + type + '"><p>' + content + '</p></div>';
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+    document.body.insertAdjacentHTML('beforeend', html);
 
-require('./bootstrap');
+    autoHideAlert(document.body.lastChild);
+}
 
-window.Vue = require('vue');
+function autoHideAlert(element) {
+    setTimeout(function () {
+        element.parentElement.removeChild(element);
+    }, 4000);
+}
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
+document.body.querySelectorAll('.alert-box').forEach(function (element) {
+    autoHideAlert(element);
 });
+
+document.body.addEventListener('click', function (e) {
+    if (e.target.matches('.alert-box')) {
+        e.target.parentElement.removeChild(e.target);
+    }
+});
+
+if (document.getElementById('key') !== null && document.getElementById('key-save') !== null) {
+    document.getElementById('key').value = window.localStorage.getItem("key");
+    document.getElementById('key-save').addEventListener('click', function(e) {
+        window.localStorage.setItem('key', document.getElementById('key').value);
+        e.stopPropagation();
+        e.preventDefault();
+
+        createAlert('The key has been saved in LocalStorage and will be automatically supplied in the future.');
+    });
+}

@@ -1,14 +1,228 @@
+@import "../../../node_modules/bootstrap-grid/dist/grid";
+@import "keylighter";
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+$block-padding: 5rem;
 
-// Variables
-@import "variables";
+@mixin hoverable($opacity: .2) {
+  transition: opacity .4s ease, filter .4s ease;
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+  filter: grayscale(100%);
+  opacity: $opacity;
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  &:hover {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  transition: color 200ms ease, background 200ms ease;
+}
+
+html, body {
+  background-color: #181818;
+  color: #ccc;
+  font-family: "Raleway", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #f45145;
+  text-decoration: none;
+
+  &:hover {
+    color: #f77e75;
+  }
+}
+
+pre {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: auto;
+
+  &.keylighter {
+    padding: 1rem 0 !important;
+
+    .line {
+      padding-left: $block-padding;
+      &.highlight {
+        background-color: rgba(#ff9700, .05);
+      }
+
+      code {
+        position: relative;
+        white-space: pre;
+
+        span.counter {
+          color: #444;
+          position: absolute;
+          right: 100%;
+          white-space: nowrap;
+          padding-right: 20px;
+
+          &::before {
+            content: attr(data-ln);
+          }
+        }
+      }
+    }
+  }
+}
+
+code {
+  font-family: 'Fira Code', 'Fira Mono', monospace !important;
+  line-height: 1.5;
+  font-feature-settings: "calt" 1;
+  text-rendering: optimizeLegibility;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-weight: 300;
+}
+
+#header {
+  margin-bottom: 15px;
+  padding: 0 $block-padding;
+
+  h1 {
+    font-weight: 300;
+    margin-bottom: 0;
+
+    &.empty {
+      opacity: .5;
+    }
+  }
+
+  aside {
+    font-weight: 300;
+
+    a, span {
+      font-weight: normal;
+    }
+  }
+}
+
+#footer {
+  font-size: 0.95em;
+  font-weight: 300;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  margin: 2rem 0;
+  padding: 0 $block-padding;
+  text-align: right;
+  text-transform: lowercase;
+}
+
+#paste-form {
+  margin: 3rem auto;
+  max-width: 1024px;
+  padding: 0 3rem
+}
+
+@media(max-width: 1023px) {
+  .mobile-break {
+    display: block;
+    height: .5rem;
+    visibility: hidden;
+  }
+}
+
+.control {
+  display: block;
+  border: none;
+  background: white;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: "Raleway", sans-serif;
+  box-shadow: 0 1px 1px 1px rgba(black, .15);
+  border-radius: 1px;
+}
+
+#key-input {
+  position: relative;
+
+  > button {
+    background: inherit;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    box-shadow: none;
+    border-bottom: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    @include hoverable(.2);
+  }
+}
+
+input, textarea {
+  @extend .control;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  &:focus, &:hover {
+    background: white;
+  }
+}
+
+textarea.code {
+  font-family: 'Fira Code', 'Fira Mono', monospace !important;
+  line-height: 1.5;
+  font-feature-settings: "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  display: inline-block;
+  border-bottom: 3px solid #f45145;
+  font-weight: bold;
+
+  @extend .control;
+
+  cursor: pointer;
+}
+
+label {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  margin-bottom: .25rem;
+  display: block;
+}
+
+.alert-box {
+  background: #fff;
+  border-radius: 2px;
+  border: 0 solid #fff;
+  border-left-width: 5px;
+  color: #000;
+  cursor: pointer;
+  font-size: 0.8em;
+  line-height: 1.5em;
+  max-width: 300px;
+  opacity: 0.9;
+  padding: 15px 15px 15px 10px;
+
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+
+  p {
+    margin: 0;
+  }
+
+  p:not(:first-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.alert-success {
+  border-color: #c6d238;
+}
+
+.alert-error {
+  border-color: #f45145;
 }

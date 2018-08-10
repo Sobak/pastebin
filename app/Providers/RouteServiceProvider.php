@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Paste;
+use App\Services\Slugger;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,9 +25,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        $this->bind('paste', function ($slug) {
+            $id = (new Slugger())->decode($slug);
+
+            return Paste::find($id);
+        });
     }
 
     /**
