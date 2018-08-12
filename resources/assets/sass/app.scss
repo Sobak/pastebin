@@ -49,7 +49,7 @@ pre {
     .line {
       padding-left: $block-padding;
       &.highlight {
-        background-color: rgba(#ff9700, .05);
+        background-color: rgba(#ff9700, .2);
       }
 
       code {
@@ -58,6 +58,7 @@ pre {
 
         span.counter {
           color: #444;
+          cursor: pointer;
           position: absolute;
           right: 100%;
           white-space: nowrap;

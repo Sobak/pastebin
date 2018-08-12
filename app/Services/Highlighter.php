@@ -43,8 +43,8 @@ class Highlighter
 
         foreach (preg_split('/\R/u', $source) as $i => $line) {
             $result .= sprintf(
-                '<div class="line"><code><span class="counter" data-ln="%d"></span>%s' . "\n" . '</code></div>',
-                $no, $line
+                '<div class="line" id="L%d"><code><span class="counter" data-ln="%d"></span>%s' . "\n" . '</code></div>',
+                $no, $no, $line
             );
 
             $no++;
