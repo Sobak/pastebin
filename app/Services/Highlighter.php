@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Kadet\Highlighter\Formatter\LineContainedHtmlFormatter;
+use Kadet\Highlighter\Formatter\HtmlFormatter;
 use Kadet\Highlighter\KeyLighter;
 
 class Highlighter
@@ -18,7 +18,7 @@ class Highlighter
 
     public function highlight($string, $language = null)
     {
-        $formatter = new LineContainedHtmlFormatter();
+        $formatter = new HtmlFormatter(['lines' => ['enable' => true]]);
         $language = $this->keylighter->getLanguage($language ?? 'text');
 
         $source = $this->keylighter->highlight($string, $language, $formatter);
