@@ -8,8 +8,8 @@
         <h1>{{ $paste->title }}</h1>
     @endif
     <aside>
-        <span>{{ $paste->language or 'text' }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
-        by <span>{{ $paste->author or 'anonymous' }}</span>
+        <span>{{ $paste->language ?? 'text' }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
+        by <span>{{ $paste->author ?? 'anonymous' }}</span>
         <span class="mobile-break separator">/</span>
         <a href="{{ route('edit', $paste->slug) }}">edit</a>
         <span class="separator">/</span>
