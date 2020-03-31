@@ -36,6 +36,15 @@ class Highlighter
         return $this->keylighter->languageByMime($mime)->getIdentifier();
     }
 
+    public function getExtensionByLanguageName($language)
+    {
+        $language = $this->keylighter->languageByName($language);
+        $extensions = $language::getMetadata()['extension'];
+        return count($extensions) > 0
+            ? $extensions[0]
+            : 'txt';
+    }
+
     protected function lineify($source)
     {
         $no = 1;

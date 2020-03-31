@@ -61,12 +61,14 @@ class PasteController extends Controller
             ->header('Content-Type', 'text/plain');
     }
 
-    public function download(Paste $paste)
+    public function download(Paste $paste, Highlighter $highlighter)
     {
+        $extension = $highlighter->getExtensionByLanguageName($paste->language);
+
         return response()
             ->streamDownload(function () use ($paste) {
                 echo $paste->content;
-            }, "{$paste->slug}.txt");
+            }, "{$paste->slug}.{$extension}");
     }
 
     public function edit(Paste $paste)
