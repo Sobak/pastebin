@@ -100,3 +100,9 @@ pre.keylighter span.kl-tag.kl-namespace {
 pre.keylighter span.kl-attribute.kl-namespace {
   color: #ffdebb;
 }
+pre.keylighter span.kl-diff.kl-add, pre.keylighter span.kl-annotation.kl-diff.kl-add {
+  color: #89B366;
+}
+pre.keylighter span.kl-diff.kl-remove, pre.keylighter span.kl-annotation.kl-diff.kl-remove {
+  color: #E26F90;
+}
