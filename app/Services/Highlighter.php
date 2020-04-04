@@ -38,11 +38,27 @@ class Highlighter
 
     public function getExtensionByLanguageName($language)
     {
+        $defaultExtension = '.txt';
         $language = $this->keylighter->languageByName($language);
-        $extensions = $language::getMetadata()['extension'];
-        return count($extensions) > 0
-            ? $extensions[0]
-            : 'txt';
+        $metadata = $language::getMetadata();
+
+        if (isset($metadata['extension']) === false) {
+            return $defaultExtension;
+        }
+
+        $extensions = $metadata['extension'];
+
+        if (empty($extensions)) {
+            return $defaultExtension;
+        }
+
+        foreach ($extensions as $candidate) {
+            if (preg_match('#\*?(?P<suffix>\.[^*?]+)#', $candidate, $match)) {
+                return $match['suffix'];
+            }
+        }
+
+        return $defaultExtension;
     }
 
     protected function lineify($source)

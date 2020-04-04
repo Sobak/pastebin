@@ -68,7 +68,7 @@ class PasteController extends Controller
         return response()
             ->streamDownload(function () use ($paste) {
                 echo $paste->content;
-            }, "{$paste->slug}.{$extension}");
+            }, "{$paste->slug}{$extension}");
     }
 
     public function edit(Paste $paste)
