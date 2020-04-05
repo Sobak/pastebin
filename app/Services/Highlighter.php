@@ -36,6 +36,31 @@ class Highlighter
         return $this->keylighter->languageByMime($mime)->getIdentifier();
     }
 
+    public function getExtensionByLanguageName($language)
+    {
+        $defaultExtension = '.txt';
+        $language = $this->keylighter->languageByName($language);
+        $metadata = $language::getMetadata();
+
+        if (isset($metadata['extension']) === false) {
+            return $defaultExtension;
+        }
+
+        $extensions = $metadata['extension'];
+
+        if (empty($extensions)) {
+            return $defaultExtension;
+        }
+
+        foreach ($extensions as $candidate) {
+            if (preg_match('#\*?(?P<suffix>\.[^*?]+)#', $candidate, $match)) {
+                return $match['suffix'];
+            }
+        }
+
+        return $defaultExtension;
+    }
+
     protected function lineify($source)
     {
         $no = 1;
