@@ -794,6 +794,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -840,6 +841,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -848,12 +850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kadet1090/KeyLighter.git",
-                "reference": "956ae4d5b028a72f4f3496c49a873181f196dd4d"
+                "reference": "98e42c6d8df2cacd8c0cd9b1e0fd1b72a34300bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/956ae4d5b028a72f4f3496c49a873181f196dd4d",
-                "reference": "956ae4d5b028a72f4f3496c49a873181f196dd4d",
+                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/98e42c6d8df2cacd8c0cd9b1e0fd1b72a34300bb",
+                "reference": "98e42c6d8df2cacd8c0cd9b1e0fd1b72a34300bb",
                 "shasum": ""
             },
             "require": {
@@ -890,7 +892,7 @@
                 }
             ],
             "description": "Yet another syntax highlighter for PHP",
-            "time": "2020-03-26T18:07:30+00:00"
+            "time": "2020-04-04T12:23:22+00:00"
         },
         {
             "name": "laravel/framework",
@@ -6504,5 +6506,6 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
