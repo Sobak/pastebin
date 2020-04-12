@@ -96,7 +96,7 @@ document.body.addEventListener('click', function (e) {
     if (e.target.matches('.counter')) {
         const lineNumber = e.target.getAttribute('data-ln');
 
-        if (window.event.ctrlKey && lastHighlightedLine !== null) {
+        if (window.event.shiftKey && lastHighlightedLine !== null) {
             // Make sure that lines are sorted ascending
             let lines = [];
 
