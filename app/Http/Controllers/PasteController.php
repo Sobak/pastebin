@@ -37,7 +37,7 @@ class PasteController extends Controller
         $paste->title = $title;
         $paste->description = $request->get('description');
         $paste->language = $language;
-        $paste->key = bcrypt($request->get('key'));
+        $paste->key = $request->get('key') !== null ? bcrypt($request->get('key')) : null;
         $paste->content = $content;
         $paste->save();
 
