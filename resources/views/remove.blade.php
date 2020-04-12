@@ -14,13 +14,7 @@
         <span>{{ $paste->language ?? 'text' }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
         by <span>{{ $paste->author ?? 'anonymous' }}</span>
         <span class="mobile-break separator">/</span>
-        <a href="{{ route('edit', $paste->slug) }}">edit</a>
-        <span class="separator">/</span>
-        <a href="{{ route('raw', $paste->slug) }}">raw</a>
-        <span class="separator">/</span>
-        <a href="{{ route('download', $paste->slug) }}">download</a>
-        <span class="separator">/</span>
-        <a href="{{ route('remove', $paste->slug) }}">remove</a>
+        <a href="{{ route('show', $paste->slug) }}">go back</a>
 
         @if ($paste->description)
             <p>{{ $paste->description }}</p>
@@ -28,5 +22,16 @@
     </aside>
 </header>
 
-<pre class="keylighter">{!! $content !!}</pre>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="{{ route('remove', $paste->slug) }}" method="post" id="paste-form">
+            <p>To remove given paste please provide the key chosen during its creation.</p>
+
+            <label for="key">Key</label>
+            <input name="key" id="key">
+
+            <button type="submit" class="button">Remove paste</button>
+        </form>
+    </div>
+</div>
 @endsection

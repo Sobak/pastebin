@@ -146,8 +146,11 @@ document.body.addEventListener('click', function (e) {
     }
 });
 
-if (document.getElementById('key') !== null && document.getElementById('key-save') !== null) {
+if (document.getElementById('key') !== null) {
     document.getElementById('key').value = window.localStorage.getItem("key");
+}
+
+if (document.getElementById('key') !== null && document.getElementById('key-save') !== null) {
     document.getElementById('key-save').addEventListener('click', function(e) {
         window.localStorage.setItem('key', document.getElementById('key').value);
         e.stopPropagation();

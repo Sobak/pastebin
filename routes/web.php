@@ -10,4 +10,7 @@ Route::post('{paste}/edit', 'PasteController@update');
 
 Route::get('{paste}/raw', 'PasteController@showRaw')->name('raw');
 
+Route::get('{paste}/remove', 'PasteController@removeShow')->name('remove');
+Route::post('{paste}/remove', 'PasteController@remove');
+
 Route::get('{paste}', 'PasteController@show')->name('show');

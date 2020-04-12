@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paste;
 use App\Services\Highlighter;
+use App\Services\Slugger;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 
@@ -112,5 +113,44 @@ class PasteController extends Controller
         return redirect()
             ->route('show', $paste->slug)
             ->with('alert', 'Paste has been updated');
+    }
+
+    public function removeShow(Paste $paste)
+    {
+        if (! $paste->key) {
+            return redirect()
+                ->back()
+                ->with('alert', 'Pastes which were given no key during their creation cannot be removed')
+                ->with('alert-type', 'error');
+        }
+
+        return view('remove', [
+            'paste' => $paste,
+            'title' => $paste->title,
+        ]);
+    }
+
+    public function remove(Request $request, Paste $paste, Slugger $slugger)
+    {
+        if (! $paste->key) {
+            return redirect()
+                ->back()
+                ->with('alert', 'Pastes which were given no key during their creation cannot be removed')
+                ->with('alert-type', 'error');
+        }
+
+        if (! password_verify($request->get('key'), $paste->key)) {
+            return redirect()
+                ->back()
+                ->with('alert', 'The given key is invalid')
+                ->with('alert-type', 'error');
+        }
+
+        $pasteHashid = $slugger->encode($paste->id);
+        $paste->delete();
+
+        return redirect()
+            ->route('index')
+            ->with('alert', "Paste {$pasteHashid} has been removed");
     }
 }
