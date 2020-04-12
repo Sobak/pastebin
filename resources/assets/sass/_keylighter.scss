@@ -19,7 +19,8 @@ pre.keylighter span.kl-string {
   color: #b7e388;
 }
 pre.keylighter span.kl-comment {
-  color: #555;
+  // Brightened from the original #555
+  color: #888;
 }
 pre.keylighter span.kl-number {
   color: #E26F90;
@@ -61,7 +62,8 @@ pre.keylighter span.kl-symbol.kl-dotnet {
   color: #ffdebb;
 }
 pre.keylighter span.kl-comment.kl-docblock {
-  color: #666;
+  // Brightened from the original #666
+  color: #999;
 }
 pre.keylighter span.kl-tag {
   color: #c17200;
