@@ -3,7 +3,7 @@
 @section('content')
 <form action="{{ route('index') }}" method="post" id="paste-form">
     <label for="title">Title</label>
-    <input name="title" id="title">
+    <input name="title" id="title" autofocus>
 
     <div class="row">
         <div class="col-md-7">
