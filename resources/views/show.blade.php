@@ -2,11 +2,14 @@
 
 @section('content')
 <header id="header">
+    <h1>
+    <a href="{{ route('index') }}">pastebin</a> /
     @if (empty($paste->title))
-        <h1 class="empty">untitled</h1>
+        <span class="empty">untitled</span>
     @else
-        <h1>{{ $paste->title }}</h1>
+        {{ $paste->title }}
     @endif
+    </h1>
     <aside>
         <span>{{ $paste->language ?? 'text' }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
         by <span>{{ $paste->author ?? 'anonymous' }}</span>
