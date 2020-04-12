@@ -12,6 +12,35 @@ function autoHideAlert(element) {
     }, 4000);
 }
 
+// Convert tab presses to 4 spaces in paste textarea
+if (document.querySelector('textarea#content') !== null) {
+    const indentationLevel = 4;
+
+    // @fixme breaks undo when indented
+    // @todo add shift+tab support
+    document.querySelector('textarea#content').addEventListener('keydown', function (e) {
+       if (e.key === 'Tab') {
+           e.preventDefault();
+
+           const start = this.selectionStart;
+           const end = this.selectionEnd;
+
+           // noinspection JSValidateTypes
+           /** @type {HTMLTextAreaElement} phpStorm inspection fix */
+           const textarea = e.target;
+
+           // Set textarea value to: text before caret + indentation + text after caret
+           textarea.value =
+             textarea.value.substring(0, start) +
+             ' '.repeat(indentationLevel) +
+             textarea.value.substring(end);
+
+           // Put caret at right position again
+           this.selectionStart = this.selectionEnd = start + indentationLevel;
+       }
+    });
+}
+
 function checkUrlHashForLines() {
     if (window.location.hash && /^#L\d+(-\d+)?$/.test(window.location.hash)) {
         highlightLine(window.location.hash.substring(2));
