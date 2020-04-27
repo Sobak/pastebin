@@ -850,12 +850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kadet1090/KeyLighter.git",
-                "reference": "f3f2804ba69766681f8df1887f8e7d58a5504642"
+                "reference": "a43b647995c90fb3714de2f8b1e21e7f6be5a099"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/f3f2804ba69766681f8df1887f8e7d58a5504642",
-                "reference": "f3f2804ba69766681f8df1887f8e7d58a5504642",
+                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/a43b647995c90fb3714de2f8b1e21e7f6be5a099",
+                "reference": "a43b647995c90fb3714de2f8b1e21e7f6be5a099",
                 "shasum": ""
             },
             "require": {
@@ -895,7 +895,7 @@
                 }
             ],
             "description": "Yet another syntax highlighter for PHP",
-            "time": "2020-04-09T07:40:39+00:00"
+            "time": "2020-04-21T15:35:05+00:00"
         },
         {
             "name": "laravel/framework",
