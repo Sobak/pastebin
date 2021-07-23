@@ -102,6 +102,7 @@ class PasteController extends Controller
         if (! $paste->key) {
             return redirect()
                 ->back()
+                ->withInput()
                 ->with('alert', 'Pastes which were given no key during their creation cannot be edited')
                 ->with('alert-type', 'error');
         }
@@ -109,6 +110,7 @@ class PasteController extends Controller
         if (password_verify($request->get('key'), $paste->key) === false) {
             return redirect()
                 ->back()
+                ->withInput()
                 ->with('alert', 'The given key is invalid')
                 ->with('alert-type', 'error');
         }
