@@ -36,6 +36,7 @@ class PasteController extends Controller
 
         $paste = new Paste();
         $paste->author = $request->get('author');
+        $paste->author_ip = $request->getClientIp();
         $paste->title = Str::limit($title, 31, '…');
         $paste->description = $request->get('description');
         $paste->language = $language;
