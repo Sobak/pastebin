@@ -34,6 +34,14 @@ class PasteController extends Controller
             $language = $highlighter->normalizeLanguageName($request->get('language'));
         }
 
+        if (trim($content) === '') {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('alert', 'Cannot create a paste with empty body')
+                ->with('alert-type', 'error');
+        }
+
         $paste = new Paste();
         $paste->author = $request->get('author');
         $paste->author_ip = $request->getClientIp();
@@ -105,11 +113,20 @@ class PasteController extends Controller
                 ->with('alert-type', 'error');
         }
 
+        $content = $request->get('content') ?? '';
+        if (trim($content) === '') {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('alert', 'Cannot create a paste with empty body')
+                ->with('alert-type', 'error');
+        }
+
         $paste->author = $request->get('author');
         $paste->title = $request->get('title');
         $paste->description = $request->get('description');
         $paste->language = $highlighter->normalizeLanguageName($request->get('language'));
-        $paste->content = $request->get('content') ?? '';
+        $paste->content = $content;
         $paste->save();
 
         return redirect()
