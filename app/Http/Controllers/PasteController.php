@@ -7,6 +7,7 @@ use App\Services\Highlighter;
 use App\Services\Slugger;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PasteController extends Controller
 {
@@ -35,7 +36,7 @@ class PasteController extends Controller
 
         $paste = new Paste();
         $paste->author = $request->get('author');
-        $paste->title = $title;
+        $paste->title = Str::limit($title, 31, '…');
         $paste->description = $request->get('description');
         $paste->language = $language;
         $paste->key = $request->get('key') !== null ? bcrypt($request->get('key')) : null;
