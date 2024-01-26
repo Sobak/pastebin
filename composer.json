@@ -10,7 +10,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "hashids/hashids": "^3.0",
-        "kadet/keylighter": "dev-master",
+        "kadet/keylighter": "^0.9",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0"
     },
@@ -63,6 +63,5 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
