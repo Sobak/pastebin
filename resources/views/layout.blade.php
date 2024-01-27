@@ -16,11 +16,11 @@
     @endif
 
     <footer id="footer">
-        Copyright by <a href="http://sobak.pl">Sobak</a>
+        Created by <a href="http://sobak.pl">Sobak</a>
         <span class="separator">/</span>
         Highlighted with <a href="http://keylighter.kadet.net">KeyLighter</a> {{$keylighterVersion}}
         <span class="separator">/</span>
-        Check <a href="https://github.com/Sobak/pastebin">source code</a>
+        Check the <a href="https://github.com/Sobak/pastebin">source code</a>
     </footer>
 
     <script src="{{ mix('assets/js/app.js') }}"></script>

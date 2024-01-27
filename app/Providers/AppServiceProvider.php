@@ -12,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ViewFacade::composer('layout', function (View $view) {
-            $view->with('keylighterVersion', KeyLighter::VERSION);
+            // TODO: Review after next KeyLighter release
+            $keylighterVersion = KeyLighter::VERSION === '0.9-dev' ? '0.9.0' : KeyLighter::VERSION;
+
+            $view->with('keylighterVersion', $keylighterVersion);
         });
     }
 
