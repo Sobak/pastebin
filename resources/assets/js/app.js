@@ -69,10 +69,8 @@ function highlightLine(line) {
     let parts = line.split('-', 2);
     parts[1] = parts[1] || parts[0];
 
-    // Convert parts to ints for valid comparison
-    parts = parts.map(function (part) {
-        return parseInt(part, 10);
-    });
+    // Convert parts to integers for valid comparison
+    parts = parts.map(part => parseInt(part, 10));
 
     if (parts[0] > parts[1]) {
         return;
@@ -125,15 +123,13 @@ document.body.addEventListener('click', function (e) {
     if (e.target.matches('.counter')) {
         const lineNumber = e.target.getAttribute('data-ln');
 
-        if (window.event.shiftKey && lastHighlightedLine !== null) {
+        if (e.shiftKey && lastHighlightedLine !== null) {
             // Make sure that lines are sorted ascending
             let lines = [];
 
             lines[0] = lastHighlightedLine;
             lines[1] = lineNumber;
-            lines.sort(function (a, b) {
-                return a - b;
-            });
+            lines.sort((a, b) => a - b);
 
             setUrlHashForLines(...lines);
             lastHighlightedLine = null;
