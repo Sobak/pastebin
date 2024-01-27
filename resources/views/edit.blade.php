@@ -17,7 +17,7 @@
                         <input name="author" id="author" value="{{ old('author', $paste->author) }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="key">Key</label>
+                        <label for="key" class="required">Key</label>
                         <div id="key-input">
                             <input type="password" name="key" id="key">
                             <button id="key-save" type="button" tabindex="-1" title="Remember the key">Set</button>
@@ -30,7 +30,7 @@
                 <textarea name="description" id="description" cols="30" rows="6">{{ old('description', $paste->description) }}</textarea>
             </div>
         </div>
-        <label for="content">Code</label>
+        <label for="content" class="required">Code</label>
         <textarea name="content" id="content" class="code" cols="30" rows="20">{{ old('content', $paste->content) }}</textarea>
 
         <button type="submit" class="button">update</button>

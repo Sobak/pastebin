@@ -30,7 +30,7 @@
             <textarea name="description" id="description" cols="30" rows="6">{{ old('description') }}</textarea>
         </div>
     </div>
-    <label for="content">Code</label>
+    <label for="content" class="required">Code</label>
     <textarea name="content" id="content" class="code" cols="30" rows="20">{{ old('content') }}</textarea>
 
     <button type="submit" class="button">paste</button>

@@ -194,6 +194,16 @@ label {
   display: block;
 }
 
+label.required:after {
+  content: "*";
+  color: #f45145;
+  margin-left: 5px;
+  font-family: sans-serif;
+  font-size: 0.95em;
+  position: relative;
+  top: -2px;
+}
+
 .alert-box {
   background: #fff;
   border-radius: 2px;
