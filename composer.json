@@ -7,7 +7,6 @@
     "require": {
         "php": "^7.4.0",
         "fruitcake/laravel-cors": "^1.0",
-        "guzzlehttp/guzzle": "^7.0.1",
         "hashids/hashids": "^3.0",
         "kadet/keylighter": "^0.9",
         "laravel/framework": "^8.75",
