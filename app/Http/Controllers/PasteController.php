@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Paste;
 use App\Services\Highlighter;
 use App\Services\Slugger;
+use App\Support\StringUtils;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -76,10 +77,15 @@ class PasteController extends Controller
     {
         $extension = $highlighter->getExtensionByLanguageName($paste->language);
 
+        $filename = $paste->slug;
+        if ($paste->title !== null) {
+            $filename = StringUtils::toFilename($paste->title, $paste->slug);
+        }
+
         return response()
             ->streamDownload(function () use ($paste) {
                 echo $paste->content;
-            }, "{$paste->slug}{$extension}");
+            }, "{$filename}{$extension}");
     }
 
     public function edit(Paste $paste)
