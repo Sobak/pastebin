@@ -9,24 +9,14 @@ use Kadet\Highlighter\KeyLighter;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         ViewFacade::composer('layout', function (View $view) {
             $view->with('keylighterVersion', KeyLighter::VERSION);
         });
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         //
     }
