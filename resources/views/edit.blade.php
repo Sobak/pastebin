@@ -19,7 +19,7 @@
                     <div class="col-md-6">
                         <label for="key">Key</label>
                         <div id="key-input">
-                            <input name="key" id="key">
+                            <input type="password" name="key" id="key">
                             <button id="key-save" type="button" tabindex="-1" title="Remember the key">Set</button>
                         </div>
                     </div>
