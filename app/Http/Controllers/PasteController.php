@@ -137,7 +137,7 @@ class PasteController extends Controller
         }
 
         $paste->author = $request->get('author');
-        $paste->title = $request->get('title');
+        $paste->title = Str::limit($request->get('title'), 31, '…');
         $paste->description = $request->get('description');
         $paste->language = $request->get('language');
         $paste->content = $content;
