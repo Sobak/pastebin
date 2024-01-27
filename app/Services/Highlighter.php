@@ -40,10 +40,10 @@ class Highlighter
         return $this->keylighter->languageByMime($mime)->getIdentifier();
     }
 
-    public function getExtensionByLanguageName($language)
+    public function getExtensionByLanguageName(string $languageName): string
     {
         $defaultExtension = '.txt';
-        $language = $this->keylighter->languageByName($language);
+        $language = $this->keylighter->languageByName($languageName);
         $metadata = $language::getMetadata();
 
         if (isset($metadata['extension']) === false) {
@@ -54,6 +54,11 @@ class Highlighter
 
         if (empty($extensions)) {
             return $defaultExtension;
+        }
+
+        // Try to find an exact match first
+        if (in_array("*.$languageName", $extensions)) {
+            return ".$languageName";
         }
 
         foreach ($extensions as $candidate) {

@@ -81,7 +81,7 @@ class PasteController extends Controller
 
     public function download(Paste $paste, Highlighter $highlighter)
     {
-        $extension = $highlighter->getExtensionByLanguageName($paste->language);
+        $extension = $highlighter->getExtensionByLanguageName($paste->language ?? 'plaintext');
 
         $filename = $paste->slug;
         if ($paste->title !== null) {
