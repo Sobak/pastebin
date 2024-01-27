@@ -30,3 +30,7 @@
 
 <pre class="keylighter">{!! $content !!}</pre>
 @endsection
+
+@section('keylighter-append-info')
+    in {{ $renderTime }}ms
+@endsection

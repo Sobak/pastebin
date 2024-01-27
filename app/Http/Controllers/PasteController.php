@@ -65,10 +65,15 @@ class PasteController extends Controller
             $language = 'plaintext';
         }
 
+        $highlightTimeStart = microtime(true) * 1000;
+        $content = $highlighter->highlight($paste->content, $language);
+        $highlightTimeFinish = microtime(true) * 1000;
+
         return view('show', [
-            'content' => $highlighter->highlight($paste->content, $language),
+            'content' => $content,
             'language' => $language,
             'paste' => $paste,
+            'renderTime' => round($highlightTimeFinish - $highlightTimeStart),
             'title' => $paste->title,
         ]);
     }
