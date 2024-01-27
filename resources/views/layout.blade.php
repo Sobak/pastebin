@@ -16,9 +16,9 @@
     @endif
 
     <footer id="footer">
-        Created by <a href="http://sobak.pl">Sobak</a>
+        Created by <a href="https://sobak.pl">Sobak</a>
         <span class="separator">/</span>
-        Highlighted with <a href="http://keylighter.kadet.net">KeyLighter</a> {{$keylighterVersion}}
+        Highlighted with <a href="https://keylighter.kadet.net">KeyLighter</a> {{$keylighterVersion}}
         <span class="separator">/</span>
         Check the <a href="https://github.com/Sobak/pastebin">source code</a>
     </footer>
