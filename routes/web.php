@@ -1,16 +1,18 @@
 <?php
 
-Route::get('/', 'PasteController@create')->name('index');
-Route::post('/', 'PasteController@store');
+use App\Http\Controllers\PasteController;
 
-Route::get('{paste}/download', 'PasteController@download')->name('download');
+Route::get('/', [PasteController::class, 'create'])->name('index');
+Route::post('/', [PasteController::class, 'store']);
 
-Route::get('{paste}/edit', 'PasteController@edit')->name('edit');
-Route::post('{paste}/edit', 'PasteController@update');
+Route::get('{paste}/download', [PasteController::class, 'download'])->name('download');
 
-Route::get('{paste}/raw', 'PasteController@showRaw')->name('raw');
+Route::get('{paste}/edit', [PasteController::class, 'edit'])->name('edit');
+Route::post('{paste}/edit', [PasteController::class, 'update']);
 
-Route::get('{paste}/remove', 'PasteController@removeShow')->name('remove');
-Route::post('{paste}/remove', 'PasteController@remove');
+Route::get('{paste}/raw', [PasteController::class, 'showRaw'])->name('raw');
 
-Route::get('{paste}', 'PasteController@show')->name('show');
+Route::get('{paste}/remove', [PasteController::class, 'removeShow'])->name('remove');
+Route::post('{paste}/remove', [PasteController::class, 'remove']);
+
+Route::get('{paste}', [PasteController::class, 'show'])->name('show');
