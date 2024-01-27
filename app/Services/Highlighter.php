@@ -26,8 +26,12 @@ class Highlighter
         return $this->lineify($source);
     }
 
-    public function normalizeLanguageName($name)
+    public function normalizeLanguageName(?string $name): string
     {
+        if ($name === null) {
+            return 'plaintext';
+        }
+
         return $this->keylighter->getLanguage($name)->getIdentifier();
     }
 

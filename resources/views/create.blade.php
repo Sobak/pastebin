@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label for="language">Language</label>
-                    <input name="language" id="language" value="{{ old('language') }}">
+                    <input name="language" id="language" maxlength="60" value="{{ old('language') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="author">Author</label>

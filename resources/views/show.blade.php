@@ -11,7 +11,7 @@
     @endif
     </h1>
     <aside>
-        <span>{{ $paste->language ?? 'text' }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
+        <span>{{ $language }}</span> pasted on <span>{{ $paste->created_at->format('d.m.Y') }}</span>
         by <span>{{ $paste->author ?? 'anonymous' }}</span>
         <span class="mobile-break separator">/</span>
         <a href="{{ route('edit', $paste->slug) }}">edit</a>
