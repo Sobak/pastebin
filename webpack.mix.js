@@ -14,7 +14,12 @@ const mix = require('laravel-mix');
 mix
     .options({
         clearConsole: false,
+        assetModules: true,
+        assetDirs: {
+            fonts: 'assets/fonts',
+        },
     })
     .js('resources/assets/js/app.js', 'public/assets/js')
+    .js('resources/assets/js/admin.js', 'public/assets/js')
     .sass('resources/assets/sass/app.scss', 'public/assets/css')
     .version();

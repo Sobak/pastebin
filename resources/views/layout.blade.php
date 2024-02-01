@@ -25,5 +25,6 @@
     </footer>
 
     <script src="{{ mix('assets/js/app.js') }}"></script>
+    @yield('footer-extra-scripts')
 </body>
 </html>

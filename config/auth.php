@@ -108,4 +108,20 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Credentials
+    |--------------------------------------------------------------------------
+    |
+    | This pastebin only supports a single admin "account" and does so by using
+    | HTTP Basic authentication against the credentials defined here.
+    | Note: authentication is disabled on local environments.
+    |
+    */
+
+    'admin' => [
+        'username' => env('ADMIN_USERNAME'),
+        'password' => env('ADMIN_PASSWORD'),
+    ],
+
 ];

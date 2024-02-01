@@ -1,0 +1,96 @@
+$dt-secondary-color: #363434;
+$dt-highlight-color: #464343;
+
+.datatable-container {
+  background-color: #222;
+  border-radius: 3px;
+  color: white;
+  min-width: 950px;
+  margin: 0 auto 15px;
+  font-size: 12px;
+}
+
+.datatable-container input {
+  margin-bottom: 0;
+  width: initial;
+}
+
+.datatable-container .header-tools {
+  border-bottom: solid 1px $dt-secondary-color;
+  padding: 12px 12px 12px 0;
+  display: flex;
+  align-items: baseline;
+
+  .search {
+    width: 30%;
+
+    label {
+      display: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: calc(1.5em + 0.75rem + 2px);
+      padding: 0.375rem 0.75rem;
+      background-color: $dt-secondary-color;
+      display: block;
+      box-sizing: border-box;
+      border-radius: 3px;
+      border: solid 1px $dt-secondary-color;
+      color: white;
+    }
+  }
+
+  .tools {
+    padding-left: 12px;
+    width: 70%;
+
+    button,
+    .button {
+      width: initial;
+    }
+  }
+}
+
+.datatable-container .datatable {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 12px;
+
+  th {
+    border-bottom: solid 1px $dt-secondary-color;
+    font-weight: bolder;
+    text-align: left;
+    padding: 12px;
+
+    a, a:hover {
+      color: white;
+      display: block;
+    }
+
+    .caret {
+      color: #f45145;
+      font-size: 0.85em;
+    }
+  }
+
+  td {
+    border-bottom: solid 1px $dt-secondary-color;
+    cursor: pointer;
+    padding: 12px;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: $dt-secondary-color;
+  }
+
+  tbody tr:hover,
+  tbody tr.checked {
+    background-color: $dt-highlight-color;
+  }
+
+  input[type="checkbox"] {
+    height: 14px;
+    width: 14px;
+  }
+}

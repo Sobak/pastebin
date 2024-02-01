@@ -1,4 +1,6 @@
 @import "../../../node_modules/bootstrap-grid/dist/grid";
+@import "datatable";
+@import "icons";
 @import "keylighter";
 
 $block-padding: 5rem;
@@ -177,14 +179,32 @@ textarea.code {
   text-rendering: optimizeLegibility;
 }
 
-button {
+button,
+.button {
   display: inline-block;
   border-bottom: 3px solid #f45145;
+  font-size: 14px;
   font-weight: bold;
 
   @extend .control;
 
   cursor: pointer;
+
+  &:disabled,
+  &.disabled {
+    border-color: #999;
+    color: rgba(16, 16, 16, 0.3);
+  }
+}
+
+.button {
+  &:hover {
+    color: #f45145;
+  }
+
+  &.disabled:hover {
+    color: rgba(16, 16, 16, 0.3);
+  }
 }
 
 label {
@@ -236,4 +256,19 @@ label.required:after {
 
 .alert-error {
   border-color: #f45145;
+}
+
+.admin-content {
+  margin-left: $block-padding;
+  margin-right: $block-padding;
+
+  #header {
+    padding: 0.5rem 0;
+    text-transform: lowercase;
+  }
+}
+
+.cell-empty {
+  color: #999;
+  font-style: italic;
 }

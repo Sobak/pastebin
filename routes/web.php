@@ -1,9 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PasteController;
 
 Route::get('/', [PasteController::class, 'create'])->name('index');
 Route::post('/', [PasteController::class, 'store']);
+
+Route::group(['prefix' => 'admin/', 'middleware' => 'auth.admin'], function() {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('{paste}/remove', [AdminController::class, 'remove'])->name('admin.remove');
+    Route::post('mass-remove', [AdminController::class, 'massRemove'])->name('admin.mass-remove');
+});
 
 Route::get('{paste}/download', [PasteController::class, 'download'])->name('download');
 
