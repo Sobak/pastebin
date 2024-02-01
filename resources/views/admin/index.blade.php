@@ -50,9 +50,9 @@ All pastes
                 <td>{{ $paste->id }}</td>
                 <td>
                     @if ($paste->title)
-                        {{ $paste->title }}
+                        <a href="{{ route('show', $paste->slug) }}">{{ $paste->title }}</a>
                     @else
-                        <span class="cell-empty">unknown</span>
+                        <a href="{{ route('show', $paste->slug) }}" class="cell-empty">unknown</a>
                     @endif
                 </td>
                 <td>

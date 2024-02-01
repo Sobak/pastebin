@@ -30,7 +30,8 @@ html, body {
   padding: 0;
 }
 
-a {
+a,
+a.cell-empty {
   color: #f45145;
   text-decoration: none;
 
