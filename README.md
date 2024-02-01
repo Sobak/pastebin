@@ -18,6 +18,7 @@ For live demo please visit [paste.sobak.pl](http://paste.sobak.pl)
 - admin panel
 - downloading pastes
 - showing raw paste representation
+- paste's programming language detection assistance
 
 ### Setup
 
@@ -38,6 +39,16 @@ vars, though) but you can also
 - generate IDE helpers for Laravel's magic (`composer ide-helpers`)
 
 Tests can be run with `./vendor/bin/phpunit`
+
+### Language detection
+
+The script provides a _very_ naive layer for detecting the paste's programming language.
+When user adds a new paste, and they didn't specify its language, they will be prompted
+with an optional confirmation dialog with a probable programming language their paste
+was created in.
+
+They can accept the suggestion to reduce the likelihood of adding a paste without the
+programming language specified.
 
 ### ShareX support
 

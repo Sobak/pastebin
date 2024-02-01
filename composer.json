@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "php": "^7.4.0",
+        "ext-json": "*",
         "fruitcake/laravel-cors": "^1.0",
         "hashids/hashids": "^4.0",
         "kadet/keylighter": "^0.9",
