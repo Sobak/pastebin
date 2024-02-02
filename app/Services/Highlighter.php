@@ -40,6 +40,11 @@ class Highlighter
         return $this->keylighter->languageByMime($mime)->getIdentifier();
     }
 
+    public function getLanguageNameByFilename($mime): string
+    {
+        return $this->keylighter->languageByExt($mime)->getIdentifier();
+    }
+
     public function getExtensionByLanguageName(string $languageName): string
     {
         $defaultExtension = '.txt';

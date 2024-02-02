@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Paste;
 use App\Services\Highlighter;
+use App\Services\LanguageDetectorService;
 use App\Services\Slugger;
 use App\Support\StringUtils;
 use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -190,5 +192,27 @@ class PasteController extends Controller
         return redirect()
             ->route('index')
             ->with('alert', "Paste {$pasteHashid} has been removed");
+    }
+
+    public function detectLanguage(
+        Request $request,
+        LanguageDetectorService $languageDetector,
+        Highlighter $highlighter
+    ): JsonResponse {
+        $content = $request->get('content') ?? '';
+        if (trim($content) === '') {
+            return new JsonResponse(['language' => null]);
+        }
+
+        $title = $request->get('title');
+        if (!empty($title) && $highlighter->getLanguageNameByFilename($title) !== 'plaintext') {
+            $extension = array_reverse(explode('.', $title))[0];
+
+            return new JsonResponse(['language' => $extension]);
+        }
+
+        $language = $languageDetector->detectLanguage($content);
+
+        return new JsonResponse(['language' => $language]);
     }
 }

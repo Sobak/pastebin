@@ -41,6 +41,75 @@ if (document.querySelector('textarea#content') !== null) {
     });
 }
 
+// Try auto-detecting language when submitting paste with no lang set
+if (document.getElementById('paste-form')) {
+    let hasRejectedSuggestion = false;
+
+    document.getElementById('paste-form').addEventListener('submit', event => {
+        const title = event.target.querySelector('input[name="title"]').value.trim();
+        const content = event.target.querySelector('textarea[name="content"]').value;
+        const languageField = event.target.querySelector('input[name="language"]');
+
+        if (hasRejectedSuggestion) {
+            // User already rejected our suggestion once, don't bother them again
+            // This allows to still submit the paste without language provided
+            return;
+        }
+
+        if (languageField.value.trim() !== '') {
+            // Language already provided, no need to detect
+            return;
+        }
+
+        if (content.trim() === '') {
+            // Content is empty, save one API call and let validator do its part
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+
+        event.preventDefault();
+
+        fetch('/api/detect-language', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+
+                return response.json();
+            })
+            .then((json) => {
+                if (json.language !== null) {
+                    let message = "You didn't specify the language for your paste but ";
+                    message += "pastebin suspects it might be " + json.language + ". Apply?";
+
+                    if (confirm(message)) {
+                        languageField.value = json.language;
+                        event.target.submit();
+                    } else {
+                        hasRejectedSuggestion = true;
+                        languageField.focus();
+                    }
+                } else {
+                    event.target.submit();
+                }
+            })
+            .catch(error => {
+                console.log('Error while detecting language', error);
+
+                event.target.submit();
+            });
+    });
+}
+
 function checkUrlHashForLines() {
     if (window.location.hash && /^#L\d+(-\d+)?$/.test(window.location.hash)) {
         highlightLine(window.location.hash.substring(2));
