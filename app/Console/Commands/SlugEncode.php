@@ -8,25 +8,16 @@ use Illuminate\Console\Command;
 class SlugEncode extends Command
 {
     protected $signature = 'slug:encode {id}';
-
     protected $description = 'Encodes an ID into the alphanumerical slug';
 
-    protected $slugger;
-
-    public function __construct(Slugger $slugger)
+    public function handle(Slugger $slugger): int
     {
-        parent::__construct();
+        $slug = $slugger->encode($this->argument('id'));
 
-        $this->slugger = $slugger;
-    }
+        $this->info($slug);
+        $this->newLine();
+        $this->line(config('app.url') . '/' . $slug);
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $this->info($this->slugger->encode($this->argument('id')));
+        return self::SUCCESS;
     }
 }
