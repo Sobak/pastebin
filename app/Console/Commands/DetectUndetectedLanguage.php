@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class DetectUndetectedLanguage extends Command
 {
-    protected $signature = 'paste:detect-language {--language=}';
+    protected $signature = 'paste:detect-language {--language=} {--save}';
     protected $description = 'Try detecting language for pastes with no language provided';
 
     public function handle(LanguageDetectorService $languageDetector, Slugger $slugger): int
@@ -40,6 +40,12 @@ class DetectUndetectedLanguage extends Command
                 config('app.url') . '/' . $slugger->encode($paste->id),
                 $language ? "<fg=green>$language</>" : 'UNKNOWN',
             ];
+
+            if ($this->option('save') && $language !== null) {
+                $paste->language = $language;
+                $paste->timestamps = false;
+                $paste->save();
+            }
         }
 
         $headers = ['ID', 'URL', 'Language'];
