@@ -19,7 +19,7 @@ class Highlighter
     public function highlight($string, $language = null)
     {
         $formatter = new HtmlFormatter(['lines' => ['enable' => true]]);
-        $language = $this->keylighter->getLanguage($language ?? 'text');
+        $language = $this->keylighter->getLanguage(mb_strtolower($language) ?? 'text');
 
         $source = $this->keylighter->highlight($string, $language, $formatter);
 
@@ -32,7 +32,7 @@ class Highlighter
             return 'plaintext';
         }
 
-        return $this->keylighter->getLanguage($name)->getIdentifier();
+        return $this->keylighter->getLanguage(mb_strtolower($name))->getIdentifier();
     }
 
     public function getLanguageNameByMime($mime)
