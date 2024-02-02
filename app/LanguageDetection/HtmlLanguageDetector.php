@@ -23,13 +23,13 @@ class HtmlLanguageDetector extends AbstractLanguageDetector
             }
 
             // TODO: Replace with regex to match more variants (ld+json, <script defer> etc)
-            if (str_contains($paste, '<script>') || str_contains($paste, '<script type="text/javascript">')) {
-                return 'html > js';
-            }
-
-            if (str_contains($paste, '<style>') || str_contains($paste, '<style type="text/css">')) {
-                return 'html > css'; // Limitation of KeyLighter, we can't embed more than one language
-            }
+//            if (str_contains($paste, '<script>') || str_contains($paste, '<script type="text/javascript">')) {
+//                return 'html > js';
+//            }
+//
+//            if (str_contains($paste, '<style>') || str_contains($paste, '<style type="text/css">')) {
+//                return 'html > css'; // Limitation of KeyLighter, we can't embed more than one language
+//            }
 
             return 'html';
         }
