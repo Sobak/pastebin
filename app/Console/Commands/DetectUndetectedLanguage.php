@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\LanguageDetection\LanguageDetectorService;
 use App\Models\Paste;
+use App\Services\LanguageDetectorService;
 use App\Services\Slugger;
 use Illuminate\Console\Command;
 

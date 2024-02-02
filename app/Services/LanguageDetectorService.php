@@ -2,7 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\LanguageDetection;
+namespace App\Services;
+
+use App\LanguageDetection\AbstractLanguageDetector;
+use App\LanguageDetection\CLikeLanguageDetector;
+use App\LanguageDetection\DiffLanguageDetector;
+use App\LanguageDetection\HtmlLanguageDetector;
+use App\LanguageDetection\JsonLanguageDetector;
+use App\LanguageDetection\PhpLanguageDetector;
+use App\LanguageDetection\ShellLanguageDetector;
+use App\LanguageDetection\SqlLanguageDetector;
 
 class LanguageDetectorService
 {
