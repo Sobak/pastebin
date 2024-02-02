@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class DetectUndetectedLanguage extends Command
 {
-    protected $signature = 'paste:detect-language';
+    protected $signature = 'paste:detect-language {--language=}';
     protected $description = 'Try detecting language for pastes with no language provided';
 
     public function handle(LanguageDetectorService $languageDetector, Slugger $slugger): int
@@ -27,6 +27,12 @@ class DetectUndetectedLanguage extends Command
             $language = $languageDetector->detectLanguage($paste->content);
             if ($language !== null) {
                 $detectedCount++;
+            }
+
+            if ($languageFilter = $this->option('language')) {
+                if ($language !== $languageFilter) {
+                    continue;
+                }
             }
 
             $rows[] = [
