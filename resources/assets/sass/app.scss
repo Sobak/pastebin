@@ -51,6 +51,8 @@ pre {
     padding: 1rem 0 !important;
 
     .line {
+      padding-top: 1px;
+      padding-bottom: 1px;
       padding-left: $block-padding;
       &.highlight {
         background-color: rgba(#ff9700, .2);
@@ -102,6 +104,7 @@ code {
 
   aside {
     font-weight: 300;
+    margin-top: 4px;
 
     a, span {
       font-weight: normal;
