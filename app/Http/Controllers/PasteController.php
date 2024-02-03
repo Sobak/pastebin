@@ -36,7 +36,7 @@ class PasteController extends Controller
         } else {
             $title = $request->get('title');
             $content = $request->get('content') ?? '';
-            $language = $request->get('language');
+            $language = $highlighter->normalizeLanguageNameOnSave($request->get('language'));
         }
 
         if (trim($content) === '') {
@@ -122,8 +122,12 @@ class PasteController extends Controller
         ]);
     }
 
-    public function update(Request $request, Paste $paste, SpamDetectorService $spamDetector)
-    {
+    public function update(
+        Request $request,
+        Paste $paste,
+        Highlighter $highlighter,
+        SpamDetectorService $spamDetector
+    ) {
         if (! $paste->key) {
             return redirect()
                 ->back()
@@ -156,7 +160,7 @@ class PasteController extends Controller
         $paste->author = $request->get('author');
         $paste->title = Str::limit($request->get('title'), 31, '…');
         $paste->description = $request->get('description');
-        $paste->language = $request->get('language');
+        $paste->language = $highlighter->normalizeLanguageNameOnSave($request->get('language'));
         $paste->content = $content;
         $paste->save();
 

@@ -35,6 +35,15 @@ class Highlighter
         return $this->keylighter->getLanguage(mb_strtolower($name))->getIdentifier();
     }
 
+    public function normalizeLanguageNameOnSave(?string $name): string
+    {
+        if ($name === 'twig') {
+            return 'html > twig';
+        }
+
+        return $name;
+    }
+
     public function getLanguageNameByMime($mime)
     {
         return $this->keylighter->languageByMime($mime)->getIdentifier();
