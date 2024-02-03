@@ -238,11 +238,6 @@ document.querySelectorAll('a[data-modal]').forEach(function (modalTrigger) {
         modal.style.display = 'block';
         window.addEventListener('keydown', closeModalOnEscape);
     });
-
-    modal.querySelector('.close').addEventListener('click', event => {
-        modal.style.display = 'none';
-        window.removeEventListener('keydown', closeModalOnEscape);
-    });
 });
 
 // When the user clicks anywhere outside the modal, close it
