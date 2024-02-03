@@ -165,7 +165,7 @@ class PasteController extends Controller
             ->with('alert', 'Paste has been updated');
     }
 
-    public function removeShow(Paste $paste)
+    public function removeShow(Paste $paste, Highlighter $highlighter)
     {
         if (! $paste->key) {
             return redirect()
@@ -174,7 +174,13 @@ class PasteController extends Controller
                 ->with('alert-type', 'error');
         }
 
+        $language = $paste->language;
+        if ($highlighter->normalizeLanguageName($language) === 'plaintext') {
+            $language = 'plaintext';
+        }
+
         return view('remove', [
+            'language' => $language,
             'paste' => $paste,
             'title' => $paste->title,
         ]);
