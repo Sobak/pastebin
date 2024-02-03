@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\SpamAttemptException;
 use App\Models\Paste;
 use App\Services\Highlighter;
 use App\Services\LanguageDetectorService;
 use App\Services\Slugger;
+use App\Services\SpamDetectorService;
 use App\Support\StringUtils;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +21,7 @@ class PasteController extends Controller
         return view('create');
     }
 
-    public function store(Request $request, Highlighter $highlighter)
+    public function store(Request $request, Highlighter $highlighter, SpamDetectorService $spamDetector)
     {
         if ($request->file('paste')) {
             $file = $request->file('paste');
@@ -43,6 +45,10 @@ class PasteController extends Controller
                 ->withInput()
                 ->with('alert', 'Cannot create a paste with empty body')
                 ->with('alert-type', 'error');
+        }
+
+        if ($spamDetector->isSpamPaste($content)) {
+            throw new SpamAttemptException();
         }
 
         $paste = new Paste();
@@ -116,7 +122,7 @@ class PasteController extends Controller
         ]);
     }
 
-    public function update(Request $request, Paste $paste)
+    public function update(Request $request, Paste $paste, SpamDetectorService $spamDetector)
     {
         if (! $paste->key) {
             return redirect()
@@ -141,6 +147,10 @@ class PasteController extends Controller
                 ->withInput()
                 ->with('alert', 'Cannot create a paste with empty body')
                 ->with('alert-type', 'error');
+        }
+
+        if ($spamDetector->isSpamPaste($content)) {
+            throw new SpamAttemptException();
         }
 
         $paste->author = $request->get('author');
