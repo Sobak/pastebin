@@ -9,7 +9,7 @@
         <div class="col-md-7">
             <div class="row">
                 <div class="col-md-12">
-                    <label for="language">Language</label>
+                    <label for="language">Language <span class="label-help">(<a href="#" data-modal="#modal_help_language">help</a>)</span></label>
                     <input name="language" id="language" maxlength="60" value="{{ old('language') }}">
                 </div>
                 <div class="col-md-6">
@@ -17,7 +17,7 @@
                     <input name="author" id="author" value="{{ old('author') }}">
                 </div>
                 <div class="col-md-6">
-                    <label for="key">Key</label>
+                    <label for="key">Key <span class="label-help">(<a href="#" data-modal="#modal_help_key">help</a>)</span></label>
                     <div id="key-input">
                         <input type="password" name="key" id="key">
                         <button id="key-save" type="button" tabindex="-1" title="Remember the key">Set</button>
@@ -35,4 +35,6 @@
 
     <button type="submit" class="button">paste</button>
 </form>
+
+@include('partials.form-help-modals')
 @endsection
