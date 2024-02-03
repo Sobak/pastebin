@@ -224,3 +224,41 @@ if (document.getElementById('key') !== null && document.getElementById('key-save
         createAlert('The key has been saved in LocalStorage and will be automatically supplied in the future.');
     });
 }
+
+// Modals
+document.querySelectorAll('a[data-modal]').forEach(function (modalTrigger) {
+    const modal = document.querySelector(modalTrigger.dataset.modal);
+    if (!modal) {
+        return;
+    }
+
+    modalTrigger.addEventListener('click', event => {
+        event.preventDefault();
+
+        modal.style.display = 'block';
+        window.addEventListener('keydown', closeModalOnEscape);
+    });
+
+    modal.querySelector('.close').addEventListener('click', event => {
+        modal.style.display = 'none';
+        window.removeEventListener('keydown', closeModalOnEscape);
+    });
+});
+
+// When the user clicks anywhere outside the modal, close it
+window.addEventListener('click', event => {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+        window.removeEventListener('keydown', closeModalOnEscape);
+    }
+});
+
+function closeModalOnEscape(event) {
+    if (event.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(function (modal) {
+            if (modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+    }
+}

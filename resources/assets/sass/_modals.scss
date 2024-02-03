@@ -1,0 +1,63 @@
+.modal {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #464343;
+  margin: 5% auto;
+  padding: 0;
+  border: 1px solid #666;
+  width: 70%;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: slide;
+  animation-duration: 0.4s
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    width: 55%;
+  }
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #f45145;
+  color: white;
+
+  .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      color: #666;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+@keyframes slide {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
