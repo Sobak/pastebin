@@ -1,18 +1,17 @@
 ## Pastebin
 
-Simple pastebin inspired by **[@kadet1090](https://github.com/kadet1090)**'s project. Features
-[KeyLighter][keylighter] for highlighting code snippets.
+Simple self-hosted pastebin for sharing code and text snippets.
 
 For live demo please visit [paste.sobak.pl](http://paste.sobak.pl)
 
-![Screenshot](https://i.imgur.com/mcwzkPf.png)
+![Screenshot](media/screenshot.png)
 
 ### Features
 
-- the best PHP syntax highlighter out there: [KeyLighter][keylighter]
+- the best PHP syntax highlighter out there: [KeyLighter](https://keylighter.kadet.net)
   - support for over 35 languages
   - context-aware syntax highlighting
-  - nested (e.g. PHP nested in HTML) highlighting support
+  - nested (e.g. PHP/CSS/JS nested in HTML) highlighting support
 - creating, updating and removing pastes
 - uploading pastes via multipart POST (e.g. for integrating with ShareX, see below)
 - admin panel
@@ -55,7 +54,4 @@ programming language specified.
 You can use this project together with [ShareX](https://getsharex.com) by providing
 configuration similar to the below:
 
-![ShareX config](http://i.imgur.com/It9I8fa.png)
-
-
-[keylighter]: https://keylighter.kadet.net
+![ShareX config](media/sharex-configuration.png)
