@@ -1,4 +1,4 @@
-## Pastebin
+# Pastebin
 
 Simple self-hosted pastebin for sharing code and text snippets.
 
@@ -6,7 +6,7 @@ For live demo please visit [paste.sobak.pl](http://paste.sobak.pl)
 
 ![Screenshot](media/screenshot.png)
 
-### Features
+## Features
 
 - the best PHP syntax highlighter out there: [KeyLighter](https://keylighter.kadet.net)
   - support for over 35 languages
@@ -19,7 +19,7 @@ For live demo please visit [paste.sobak.pl](http://paste.sobak.pl)
 - showing raw paste representation
 - paste's programming language detection assistance
 
-### Setup
+## Setup
 
 In order to set up the project you have to:
 
@@ -29,7 +29,7 @@ In order to set up the project you have to:
    otherwise your admin panel will be publicly accessible!
 3. Run database migrations with `php artisan migrate`
 
-### Local development
+## Local development
 
 You need to perform setup similar to the one described above (you can omit the `ADMIN_*` env
 vars, though) but you can also
@@ -39,7 +39,7 @@ vars, though) but you can also
 
 Tests can be run with `./vendor/bin/phpunit`
 
-### Language detection
+## Language detection
 
 The script provides a _very_ naive layer for detecting the paste's programming language.
 When user adds a new paste, and they didn't specify its language, they will be prompted
@@ -49,7 +49,7 @@ was created in.
 They can accept the suggestion to reduce the likelihood of adding a paste without the
 programming language specified.
 
-### ShareX support
+## ShareX support
 
 You can use this project together with [ShareX](https://getsharex.com) by providing
 configuration similar to the below:
