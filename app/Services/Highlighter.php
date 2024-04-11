@@ -41,7 +41,7 @@ class Highlighter
             return 'html > twig';
         }
 
-        return $name;
+        return $name ?? 'plaintext';
     }
 
     public function getLanguageNameByMime($mime)
