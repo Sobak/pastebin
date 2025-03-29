@@ -4,7 +4,9 @@
 @import "keylighter";
 @import "modals";
 
+$breakpoint-sm: 576px;
 $block-padding: 5rem;
+$block-padding-sm: 25px;
 
 @mixin hoverable($opacity: .2) {
   transition: opacity .4s ease, filter .4s ease;
@@ -79,6 +81,12 @@ pre {
   }
 }
 
+@media(max-width: $breakpoint-sm) {
+  pre.keylighter .line {
+    padding-left: 50px;
+  }
+}
+
 code {
   font-family: 'Fira Code', 'Fira Mono', monospace !important;
   line-height: 1.5;
@@ -127,6 +135,28 @@ code {
   margin: 3rem auto;
   max-width: 1024px;
   padding: 0 3rem
+}
+
+@media(max-width: $breakpoint-sm) {
+  #header {
+    padding: 0 $block-padding-sm;
+
+    h1 {
+      font-size: 1.75em;
+    }
+  }
+
+  #footer {
+    line-height: 1.25rem;
+    margin: $block-padding-sm;
+    padding: 0;
+    text-align: left;
+  }
+
+  #paste-form {
+    margin: 30px $block-padding-sm $block-padding-sm;
+    padding: 0;
+  }
 }
 
 @media(max-width: 1023px) {
